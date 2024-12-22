@@ -1,0 +1,100 @@
+# Ignore build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# Logs
+*.log
+*.tlog
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+*.csproj.user
+*.pidb
+*.svclog
+*.ide.*
+
+# Visual Studio specific files
+.vscode/
+.vs/
+
+# Rider/JetBrains specific files
+.idea/
+*.sln.iml
+
+# Resharper specific
+_ReSharper*/
+*.DotSettings.user
+
+# Dependency folders
+packages/
+node_modules/
+.vsix/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Generated files
+*.g.cs
+*.g.i.cs
+*.generated.cs
+
+# Web related files
+wwwroot/
+node_modules/
+dist/
+
+# Database files
+*.mdf
+*.ldf
+*.ndf
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configuration
+appsettings.*.json
+
+# Secrets
+secrets.json
+
+# Publish output
+.publish/
+
+# Testing-related files
+TestResults/
+*.trx
+*.coverage
+coverage.opencover.xml
+coverage.cobertura.xml
+
+# Git conflict files
+*_backup.cs
+*_BASE.cs
+*_LOCAL.cs
+*_REMOTE.cs
+
+# Azure Pipelines
+*.coveragexml
+
+# Docker
+docker-compose.override.yml
+.docker/
+**/Dockerfile
+docker-compose.yml
