@@ -1,9 +1,10 @@
-﻿using LibraryApp.Api.Controllers;
+﻿using Api.Controllers;
+using Presentation.Controllers;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
-namespace LibraryApp.Tests.Api.Controllers
+namespace Presentation.Tests.Api.Controllers
 {
     public class UserControllerTests
     {

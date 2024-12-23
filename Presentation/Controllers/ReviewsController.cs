@@ -1,21 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 
-namespace LibraryApp.Api.Controllers
+namespace Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class BooksController : ControllerBase
+    public class ReviewsController : ControllerBase
     {
-
         private readonly ILogger<TestController> _logger;
 
-        public BooksController(ILogger<TestController> logger)
+        public ReviewsController(ILogger<TestController> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetBooks")]
+        [HttpGet(Name = "GetReviews")]
         public bool Get()
         {
             return true;
