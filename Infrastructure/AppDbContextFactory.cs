@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using System.Diagnostics.Metrics;
 using System.IO;
 
 namespace Infrastructure.Data
@@ -12,13 +14,14 @@ namespace Infrastructure.Data
             // Build configuration
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
+            .AddJsonFile("appsettings.json")
                 .Build();
 
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
             // Create options for DbContext
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             //optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-            optionsBuilder.UseSqlServer("Server=localhost;Database=LibraryApp;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(connectionString);
             return new AppDbContext(optionsBuilder.Options);
         }
     }

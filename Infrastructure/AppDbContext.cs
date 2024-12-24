@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Domain.Definitions;
 
 namespace Infrastructure.Data
 {

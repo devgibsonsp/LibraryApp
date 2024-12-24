@@ -8,11 +8,10 @@ namespace Infrastructure.Data
 
     public static class BookFaker
     {
-        /*
+        
         public static List<Book> GenerateBooks(int count)
         {
             var bookFaker = new Faker<Book>()
-                .RuleFor(b => b.Id, f => f.IndexFaker + 1)
                 .RuleFor(b => b.Title, f => f.Lorem.Sentence(3))
                 .RuleFor(b => b.Author, f => f.Name.FullName())
                 .RuleFor(b => b.Description, f => f.Lorem.Paragraph())
@@ -23,10 +22,10 @@ namespace Infrastructure.Data
                 .RuleFor(b => b.ISBN, f => f.Commerce.Ean13())
                 .RuleFor(b => b.PageCount, f => f.Random.Int(100, 500))
                 .RuleFor(b => b.IsAvailable, f => f.Random.Bool())
-                .RuleFor(b => b.AverageRating, f => f.Random.Double(1, 5)); // Random rating between 1 and 5
+                .RuleFor(b => b.AverageRating, f => f.Random.Double(1, 5));
 
             return bookFaker.Generate(count);
         }
-        */
+        
     }
 }
