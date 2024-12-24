@@ -1,5 +1,4 @@
-﻿using Api.Controllers;
-using Presentation.Controllers;
+﻿using Presentation.Controllers;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -8,12 +7,12 @@ namespace Presentation.Tests.Api.Controllers
 {
     public class UserControllerTests
     {
-        private readonly Mock<ILogger<TestController>> _mockLogger;
+        private readonly Mock<ILogger<UserController>> _mockLogger;
 
         public UserControllerTests()
         {
             // Initialize mock dependencies
-            _mockLogger = new Mock<ILogger<TestController>>();
+            _mockLogger = new Mock<ILogger<UserController>>();
         }
 
         [Fact]

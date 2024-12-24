@@ -1,5 +1,4 @@
-﻿using Api.Controllers;
-using Presentation.Controllers;
+﻿using Presentation.Controllers;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -8,19 +7,19 @@ namespace Presentation.Tests.Api.Controllers
 {
     public class BooksControllerTests
     {
-        private readonly Mock<ILogger<TestController>> _mockLogger;
+        private readonly Mock<ILogger<BooksController>> _mockLogger;
 
         public BooksControllerTests()
         {
             // Initialize mock dependencies
-            _mockLogger = new Mock<ILogger<TestController>>();
+            _mockLogger = new Mock<ILogger<BooksController>>();
         }
 
         [Fact]
         public void Get_ReturnsTrue()
         {
             // Arrange
-            var controller = new UserController(_mockLogger.Object);
+            var controller = new BooksController(_mockLogger.Object);
 
             // Act
             var result = controller.Get();

@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 
-namespace Api.Controllers
+namespace Presentation.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly ILogger<TestController> _logger;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(ILogger<TestController> logger)
+        public UserController(ILogger<UserController> logger)
         {
             _logger = logger;
         }
