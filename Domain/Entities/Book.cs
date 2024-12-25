@@ -1,4 +1,4 @@
-﻿namespace Domain.Definitions
+﻿namespace Domain.Entities
 {
     public class Book
     {

@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using System;
 using System.Collections.Generic;
-using Domain.Definitions;
+using Domain.Entities;
 
 namespace Infrastructure.Data
 {
