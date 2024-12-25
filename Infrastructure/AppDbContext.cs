@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Domain.Definitions;
+using Domain.Entities;
 
 namespace Infrastructure.Data
 {
