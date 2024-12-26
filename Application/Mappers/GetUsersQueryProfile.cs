@@ -4,9 +4,9 @@ using Application.Responses;
 
 namespace Application.Mappers
 {
-    public class GetUsersCommandProfile: Profile
+    public class GetUsersQueryProfile: Profile
     {
-        public GetUsersCommandProfile()
+        public GetUsersQueryProfile()
         {
             CreateMap<User, UserResponse>()
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.ToString())); // Convert UserRole enum to string
