@@ -1,4 +1,5 @@
-﻿using Application.Queries;
+﻿using Application.Commands.Users;
+using Application.Queries;
 using Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,13 @@ namespace Presentation.Controllers
             // Send the query to the MediatR pipeline
             var users = await _mediator.Send(new GetUsersQuery());
             return Ok(users);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<int>> CreateUser([FromBody] CreateUserCommand command)
+        {
+            var userId = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetAllUsers), new { id = userId }, userId);
         }
     }
 }

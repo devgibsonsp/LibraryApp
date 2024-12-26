@@ -19,6 +19,7 @@ namespace Infrastructure.Extensions
 
             // Register repositories
             services.AddScoped<ILibraryReadRepository, LibraryReadRepository>();
+            services.AddScoped<ILibraryWriteRepository, LibraryWriteRepository>();
 
             // Register MediatR
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
