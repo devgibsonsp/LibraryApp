@@ -4,13 +4,13 @@ provider "azurerm" {
 
 # Resource Group
 resource "azurerm_resource_group" "app_rg" {
-  name     = "iac-app-rg"
+  name     = "library-app-rg"
   location = var.location
 }
 
 # Azure SQL Database
 resource "azurerm_sql_server" "sql_server" {
-  name                         = "iac-sql-server"
+  name                         = "library-sql-server"
   resource_group_name          = azurerm_resource_group.app_rg.name
   location                     = azurerm_resource_group.app_rg.location
   administrator_login          = var.sql_admin_username
@@ -19,7 +19,7 @@ resource "azurerm_sql_server" "sql_server" {
 }
 
 resource "azurerm_sql_database" "sql_db" {
-  name                = "iac-database"
+  name                = "library-database"
   resource_group_name = azurerm_resource_group.app_rg.name
   location            = azurerm_resource_group.app_rg.location
   server_name         = azurerm_sql_server.sql_server.name
@@ -28,7 +28,7 @@ resource "azurerm_sql_database" "sql_db" {
 
 # Backend App Service Plan
 resource "azurerm_app_service_plan" "backend_plan" {
-  name                = "iac-backend-asp"
+  name                = "library-backend-asp"
   location            = azurerm_resource_group.app_rg.location
   resource_group_name = azurerm_resource_group.app_rg.name
   sku {
@@ -39,7 +39,7 @@ resource "azurerm_app_service_plan" "backend_plan" {
 
 # Backend App Service
 resource "azurerm_app_service" "backend" {
-  name                = "iac-backend-service"
+  name                = "library-backend-service"
   location            = azurerm_resource_group.app_rg.location
   resource_group_name = azurerm_resource_group.app_rg.name
   app_service_plan_id = azurerm_app_service_plan.backend_plan.id
@@ -52,7 +52,7 @@ resource "azurerm_app_service" "backend" {
 
 # Frontend Static Web App
 resource "azurerm_static_site" "frontend" {
-  name                = "iac-frontend"
+  name                = "library-frontend"
   location            = azurerm_resource_group.app_rg.location
   resource_group_name = azurerm_resource_group.app_rg.name
   sku                 = "Free"

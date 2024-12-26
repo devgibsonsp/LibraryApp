@@ -32,8 +32,8 @@ Terraform will output important details like:
 Backend URL for API.
 Frontend URL for static site.
 Database connection string for backend configuration.
-Remaining Work
-what’s still missing:
+
+TODO:
 
 1. Backend,
 The Terraform config currently sets up the App Service but doesn’t deploy backend code.
