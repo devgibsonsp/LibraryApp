@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Handlers.Users
 {
@@ -32,8 +33,15 @@ namespace Application.Handlers.Users
             var user = _mapper.Map<User>(request);
             user.PasswordHash = hashedPassword;
 
-            // Save the user via the write repository
-            return await _libraryWriteRepository.AddUserAsync(user);
+            try
+            {
+                // Save the user via the write repository
+                return await _libraryWriteRepository.AddUserAsync(user);
+            }
+            catch (DbUpdateException ex) when (ex.InnerException?.Message.Contains("duplicate") ?? false)
+            {
+                throw new Exception("A user with the same email already exists.");
+            }
         }
     }
 }
