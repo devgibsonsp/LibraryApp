@@ -2,6 +2,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Infrastructure.Data.Seed;
+using Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Adding layers
+//builder.Services.AddInfrastructureLayer();
+builder.Services.AddApplicationLayer();
+//builder.Services.AddDomainLayer();
 
 // Register DbContext with SQL Server connection string
 builder.Services.AddDbContext<AppDbContext>(options =>
