@@ -1,6 +1,7 @@
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Infrastructure.Data.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
