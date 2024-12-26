@@ -17,6 +17,11 @@ namespace Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
             // Configure relationships
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Book)
                 .WithMany(b => b.Reviews)
