@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories
         {
             return await _dbContext.Users.ToListAsync();
         }
-
+        /*
         public async Task<User> GetUserByIdAsync(int id)
         {
             return await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
@@ -43,12 +43,13 @@ namespace Infrastructure.Repositories
                 .Where(c => c.UserId == userId)
                 .ToListAsync();
         }
-
+        
         public async Task<List<Review>> GetReviewsByBookIdAsync(int bookId)
         {
             return await _dbContext.Reviews
                 .Where(r => r.BookId == bookId)
                 .ToListAsync();
         }
+        */
     }
 }

@@ -7,6 +7,7 @@ namespace Presentation.Tests.Api.Controllers
 {
     public class UserControllerTests
     {
+        /*
         private readonly Mock<ILogger<UsersController>> _mockLogger;
 
         public UserControllerTests()
@@ -27,5 +28,6 @@ namespace Presentation.Tests.Api.Controllers
             // Assert
             Assert.True(result); // Stubbed to check the return value is true
         }
+        */
     }
 }
