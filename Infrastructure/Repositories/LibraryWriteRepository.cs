@@ -15,11 +15,11 @@ namespace Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<int> AddUserAsync(User user)
+        public async Task<string> AddUserAsync(ApplicationUser user)
         {
             await _dbContext.Users.AddAsync(user);
             await _dbContext.SaveChangesAsync();
-            return user.Id; // Return the ID of the newly created user
+            return user.Id; // Return the string ID of the newly created user
         }
 
         public async Task SoftDeleteBookAsync(int bookId)

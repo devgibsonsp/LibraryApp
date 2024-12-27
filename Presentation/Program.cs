@@ -1,9 +1,10 @@
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using Infrastructure.Data.Seed;
 using Application.Extensions;
 using Infrastructure.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,20 +18,29 @@ builder.Services.AddSwaggerGen();
 // Adding layers
 builder.Services.AddInfrastructureLayer(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddApplicationLayer();
-//builder.Services.AddDomainLayer();
 
 // Register DbContext with SQL Server connection string
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Add ASP.NET Identity
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+
 var app = builder.Build();
 
+// Run the seeding logic
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    DbSeeder.Seed(context); // Call the seeding logic
-}
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
+    // Run seeding asynchronously
+    await DbSeeder.SeedAsync(context, userManager, roleManager);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

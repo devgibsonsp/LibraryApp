@@ -2,11 +2,10 @@
 
 namespace Application.Commands
 {
-    public class CreateUserCommand : IRequest<int> // Returns the new user's ID
+    public class CreateUserCommand : IRequest<string>
     {
-        public string Username { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; } // Hashing will occur before saving
-        public string Role { get; set; }    // "Librarian" or "Customer"
+        public string Password { get; set; }
+        public string Username { get; set; }
     }
 }

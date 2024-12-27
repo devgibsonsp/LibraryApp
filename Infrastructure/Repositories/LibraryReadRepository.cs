@@ -17,7 +17,7 @@ namespace Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<List<User>> GetAllUsersAsync()
+        public async Task<List<ApplicationUser>> GetAllUsersAsync()
         {
             return await _dbContext.Users.ToListAsync();
         }
@@ -49,7 +49,7 @@ namespace Infrastructure.Repositories
                 .FirstOrDefaultAsync(b => b.Id == id);
         }
 
-        public async Task<User> GetUserByEmailAsync(string email)
+        public async Task<ApplicationUser> GetUserByEmailAsync(string email)
         {
             return await _dbContext.Users
                 .FirstOrDefaultAsync(u => u.Email == email);

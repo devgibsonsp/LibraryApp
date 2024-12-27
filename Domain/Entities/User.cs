@@ -3,6 +3,7 @@ using Domain.ValueObjects;
 
 namespace Domain.Entities
 {
+    /*
     public class User
     {
         public int Id { get; set; }
@@ -12,5 +13,5 @@ namespace Domain.Entities
         public UserRole Role { get; set; } // "Librarian" or "Customer"
         public ICollection<Review> Reviews { get; set; }
         public ICollection<Checkout> Checkouts { get; set; }
-    }
+    }*/
 }
