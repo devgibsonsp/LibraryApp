@@ -2,6 +2,7 @@
 using Application.Queries;
 using Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace Presentation.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<UserResponse>>> GetAllUsers()
         {
@@ -27,6 +29,7 @@ namespace Presentation.Controllers
             return Ok(users);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<int>> CreateUser([FromBody] CreateUserCommand command)
         {
