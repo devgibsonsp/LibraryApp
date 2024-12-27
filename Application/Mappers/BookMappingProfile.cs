@@ -14,7 +14,7 @@ namespace Application.Mappers
 
             // Map from Review to ReviewResponse
             CreateMap<Review, ReviewResponse>()
-                .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Username));
+                .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.UserName));
         }
     }
 }

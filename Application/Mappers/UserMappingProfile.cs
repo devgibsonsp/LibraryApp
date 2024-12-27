@@ -9,15 +9,15 @@ namespace Application.Mappers
     {
         public UserMappingProfile()
         {
-            CreateMap<CreateUserCommand, User>()
+            CreateMap<CreateUserCommand, ApplicationUser>()
                 .ForMember(dest => dest.PasswordHash, opt => opt.Ignore()) // Hashing happens in the handler
                 .ForMember(dest => dest.Reviews, opt => opt.Ignore())      // Set defaults
                 .ForMember(dest => dest.Checkouts, opt => opt.Ignore());
 
-            CreateMap<User, UserResponse>()
-                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.ToString()));
+            CreateMap<ApplicationUser, UserResponse>()
+                .ForMember(dest => dest.Role, opt => opt.Ignore()); // Role must be set dynamically
 
-            CreateMap<User, UserLoginResponse>();
+            CreateMap<ApplicationUser, UserLoginResponse>();
         }
     }
 }

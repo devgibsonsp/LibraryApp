@@ -1,31 +1,34 @@
-﻿using Application.Responses;
+﻿using Application.Queries;
+using Application.Responses;
 using AutoMapper;
-using Domain.Contracts;
+using Domain.Entities;
 using MediatR;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
-namespace Application.Queries.Handlers
+public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, List<UserResponse>>
 {
-    public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, List<UserResponse>>
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IMapper _mapper;
+
+    public GetUsersQueryHandler(UserManager<ApplicationUser> userManager, IMapper mapper)
     {
-        private readonly ILibraryReadRepository _libraryReadRepository;
-        private readonly IMapper _mapper;
+        _userManager = userManager;
+        _mapper = mapper;
+    }
 
-        public GetUsersQueryHandler(ILibraryReadRepository libraryReadRepository, IMapper mapper)
+    public async Task<List<UserResponse>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
+    {
+        var users = _userManager.Users.ToList(); // Retrieve users
+        var userResponses = new List<UserResponse>();
+
+        foreach (var user in users)
         {
-            _libraryReadRepository = libraryReadRepository;
-            _mapper = mapper;
+            var roles = await _userManager.GetRolesAsync(user); // Fetch roles for each user
+            var userResponse = _mapper.Map<UserResponse>(user);
+            userResponse.Role = roles.FirstOrDefault(); // Assuming one role per user
+            userResponses.Add(userResponse);
         }
 
-        public async Task<List<UserResponse>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
-        {
-            // Fetch domain entities from the repository
-            var users = await _libraryReadRepository.GetAllUsersAsync();
-
-            // Map domain entities to response models
-            return _mapper.Map<List<UserResponse>>(users);
-        }
+        return userResponses;
     }
 }

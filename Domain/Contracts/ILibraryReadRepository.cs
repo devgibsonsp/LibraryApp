@@ -6,7 +6,7 @@ namespace Domain.Contracts
 {
     public interface ILibraryReadRepository
     {
-        Task<List<User>> GetAllUsersAsync();
+        Task<List<ApplicationUser>> GetAllUsersAsync();
 
         Task<List<Book>> GetAllBooksAsync();
 
@@ -14,7 +14,7 @@ namespace Domain.Contracts
 
         Task<List<Book>> SearchBooksByTitleAsync(string title);
 
-        Task<User> GetUserByEmailAsync(string email);
+        Task<ApplicationUser> GetUserByEmailAsync(string email);
         /*
         Task<User> GetUserByIdAsync(int id);
         Task<List<Book>> GetAllBooksAsync();
