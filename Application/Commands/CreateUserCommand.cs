@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Application.Commands.Users
+namespace Application.Commands
 {
     public class CreateUserCommand : IRequest<int> // Returns the new user's ID
     {

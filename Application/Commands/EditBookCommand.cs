@@ -1,8 +1,8 @@
-﻿using Domain.Entities;
+﻿using MediatR;
 
-namespace Domain.Entities
+namespace Application.Commands
 {
-    public class Book
+    public class EditBookCommand : IRequest<Unit>
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -14,8 +14,5 @@ namespace Domain.Entities
         public string Category { get; set; }
         public string ISBN { get; set; }
         public int PageCount { get; set; }
-        public ICollection<Review> Reviews { get; set; }
-        public bool IsDeleted { get; set; } // Soft delete flag
-
     }
 }

@@ -21,6 +21,34 @@ namespace Infrastructure.Repositories
         {
             return await _dbContext.Users.ToListAsync();
         }
+
+        public async Task<List<Book>> GetAllBooksAsync()
+        {
+            return await _dbContext.Books
+                .Where(b => !b.IsDeleted) // Exclude deleted books
+                .Include(b => b.Reviews) // Include related reviews
+                .ThenInclude(r => r.Customer) // Include customer details for reviews
+                .ToListAsync();
+        }
+
+        public async Task<List<Book>> SearchBooksByTitleAsync(string title)
+        {
+            return await _dbContext.Books
+                .Where(b => !b.IsDeleted && EF.Functions.Like(b.Title, $"%{title}%")) // Partial match, case-insensitive
+                .Include(b => b.Reviews) // Include reviews
+                .ThenInclude(r => r.Customer) // Include customer for reviews
+                .ToListAsync();
+        }
+
+        public async Task<Book> GetBookByIdAsync(int id)
+        {
+            return await _dbContext.Books
+                .Where(b => !b.IsDeleted) // Exclude soft-deleted books
+                .Include(b => b.Reviews) // Include reviews
+                .ThenInclude(r => r.Customer) // Include customer details for reviews
+                .FirstOrDefaultAsync(b => b.Id == id);
+        }
+
         /*
         public async Task<User> GetUserByIdAsync(int id)
         {

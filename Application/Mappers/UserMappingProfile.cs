@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using Application.Commands.Users;
+using Application.Commands;
 using Domain.Entities;
+using Application.Responses;
 
 namespace Application.Mappers
 {
@@ -12,6 +13,9 @@ namespace Application.Mappers
                 .ForMember(dest => dest.PasswordHash, opt => opt.Ignore()) // Hashing happens in the handler
                 .ForMember(dest => dest.Reviews, opt => opt.Ignore())      // Set defaults
                 .ForMember(dest => dest.Checkouts, opt => opt.Ignore());
+
+            CreateMap<User, UserResponse>()
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.ToString()));
         }
     }
 }

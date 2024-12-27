@@ -1,21 +1,17 @@
-﻿using Domain.Entities;
-
-namespace Domain.Entities
+﻿namespace Application.Responses
 {
-    public class Book
+    public class BookResponse
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
-        public string Description { get; set; }
-        public string CoverImageUrl { get; set; }
         public string Publisher { get; set; }
         public DateTime PublicationDate { get; set; }
         public string Category { get; set; }
         public string ISBN { get; set; }
         public int PageCount { get; set; }
-        public ICollection<Review> Reviews { get; set; }
-        public bool IsDeleted { get; set; } // Soft delete flag
 
+        // Include reviews for the book
+        public List<ReviewResponse> CustomerReviews { get; set; }
     }
 }
