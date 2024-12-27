@@ -14,6 +14,7 @@ namespace Domain.Contracts
 
         Task<List<Book>> SearchBooksByTitleAsync(string title);
 
+        Task<User> GetUserByEmailAsync(string email);
         /*
         Task<User> GetUserByIdAsync(int id);
         Task<List<Book>> GetAllBooksAsync();

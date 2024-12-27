@@ -16,6 +16,8 @@ namespace Application.Mappers
 
             CreateMap<User, UserResponse>()
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.ToString()));
+
+            CreateMap<User, UserLoginResponse>();
         }
     }
 }
