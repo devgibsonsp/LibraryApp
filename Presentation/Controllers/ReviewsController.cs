@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace Presentation.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ReviewsController : ControllerBase

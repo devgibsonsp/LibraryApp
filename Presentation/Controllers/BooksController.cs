@@ -3,6 +3,7 @@ using Application.Queries;
 using Application.Queries.Books;
 using Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Presentation.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<BookResponse>>> GetAllBooks()
         {
@@ -27,6 +29,7 @@ namespace Presentation.Controllers
             return Ok(books);
         }
 
+        [Authorize]
         [HttpGet("search")]
         public async Task<ActionResult<List<BookResponse>>> SearchBooks([FromQuery] string title)
         {
@@ -37,6 +40,7 @@ namespace Presentation.Controllers
             return Ok(books);
         }
 
+        [Authorize(Roles = "Librarian")]
         [HttpPost]
         public async Task<ActionResult<int>> AddBook([FromBody] CreateBookCommand command)
         {
@@ -44,6 +48,7 @@ namespace Presentation.Controllers
             return CreatedAtAction(nameof(GetAllBooks), new { id = bookId }, bookId);
         }
 
+        [Authorize(Roles = "Librarian")]
         [HttpPut("{id}")]
         public async Task<IActionResult> EditBook(int id, [FromBody] EditBookCommand command)
         {
@@ -56,6 +61,7 @@ namespace Presentation.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<BookResponse>> GetBookById(int id)
         {
@@ -63,7 +69,7 @@ namespace Presentation.Controllers
             return Ok(book);
         }
 
-        // 5. Soft delete a book
+        [Authorize(Roles = "Librarian")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteBook(int id)
         {
