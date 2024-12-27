@@ -33,5 +33,19 @@ namespace Presentation.Controllers
             var userId = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetAllUsers), new { id = userId }, userId);
         }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<UserLoginResponse>> Login([FromBody] GetUserForLoginQuery query)
+        {
+            try
+            {
+                var response = await _mediator.Send(query);
+                return Ok(response);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized(new { Message = "Invalid email or password." });
+            }
+        }
     }
 }
