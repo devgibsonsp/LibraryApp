@@ -1,4 +1,4 @@
-﻿using Application.Commands.Users;
+﻿using Application.Commands;
 using Application.Queries;
 using Application.Responses;
 using MediatR;

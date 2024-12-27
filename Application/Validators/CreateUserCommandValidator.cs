@@ -1,4 +1,4 @@
-﻿using Application.Commands.Users;
+﻿using Application.Commands;
 using Domain.Contracts;
 using FluentValidation;
 

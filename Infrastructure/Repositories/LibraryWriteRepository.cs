@@ -21,5 +21,30 @@ namespace Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
             return user.Id; // Return the ID of the newly created user
         }
+
+        public async Task SoftDeleteBookAsync(int bookId)
+        {
+            var book = await _dbContext.Books.FirstOrDefaultAsync(b => b.Id == bookId);
+            if (book == null) throw new Exception("Book not found");
+
+            book.IsDeleted = true;
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<Book> GetBookByIdAsync(int id)
+        {
+            return await _dbContext.Books
+                .Where(b => !b.IsDeleted) // Exclude soft-deleted books
+                .FirstOrDefaultAsync(b => b.Id == id);
+        }
+
+        public async Task UpdateBookAsync(Book book)
+        {
+            // Mark the book entity as modified
+            _dbContext.Books.Update(book);
+
+            // Save changes to the database
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
